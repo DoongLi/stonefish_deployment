@@ -1,0 +1,11 @@
+<launch>
+    <!-- navigator -->
+    <rosparam ns="navigator" command="load" file="$(find cola2_nav)/config/navigator.yaml"/>
+    <node name="navigator" pkg="cola2_nav" type="navigator_node" output="screen"/>
+    <!-- navigator position -->
+    <rosparam ns="navigator_position" command="load" file="$(find cola2_nav)/config/navigator_position.yaml"/>
+    <node name="navigator_position" pkg="cola2_nav" type="navigator_position_node" output="screen"/>
+    <!-- navigator surface -->
+    <rosparam ns="navigator_surface" command="load" file="$(find cola2_nav)/config/navigator.yaml"/>
+    <node name="navigator_surface" pkg="cola2_nav" type="navigator_surface_node" output="screen"/>
+</launch>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cola2_log</name>
+  <version>24.1.4</version>
+  <description>The cola2_log package</description>
+  <maintainer email="software@iquarobotics.com">Iqua Robotics</maintainer>
+  <license>Iqua Robotics</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- ROS Dependencies -->
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>diagnostic_msgs</depend>
+
+  <!-- COLA2 Dependencies -->
+  <depend>cola2_lib_ros</depend>
+  <depend>cola2_msgs</depend>
+</package>

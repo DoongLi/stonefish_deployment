@@ -1,0 +1,13 @@
+# Path to reports folder relative to home.
+reports_folder: "logs/mission_reports"
+# Filter out nodes that contain any of the string in the list.
+filter_nodes: ["mission_reporter", "rosbridge_tcp"]
+# Filter out any phrase matching the following regex expression.
+filter_regex:
+  [
+    "Too big acceleration \\(-?\\d*\\.\\d*, -?\\d*\\.\\d*, -?\\d*\\.\\d*\\) in time -?\\d*\\.\\d* with new velocity \\(-?\\d*\\.\\d*, -?\\d*\\.\\d*, -?\\d*\\.\\d*\\)",
+    "DVL update rejected\\.",
+  ]
+# Rosout configuration
+rosout_time_format: "%H:%M:%S"
+rosout_include_nanoseconds: true

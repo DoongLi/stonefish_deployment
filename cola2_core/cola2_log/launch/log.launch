@@ -1,0 +1,18 @@
+<launch>
+    <!-- bag node -->
+    <node name="bag_recorder" pkg="cola2_log" type="bag_recorder_node.py" output="screen"/>
+    <!-- computer logger -->
+    <node name="computer_logger" pkg="cola2_log" type="computer_logger_node.py" output="screen"/>
+    <!-- default param handler -->
+    <rosparam ns="default_param_handler" command="load" file="$(find cola2_log)/config/default_param_handler.yaml"/>
+    <node name="default_param_handler" pkg="cola2_log" type="default_param_handler_node.py" output="screen" respawn="true">
+        <param name="config_folder" value="config_test"/>
+    </node>
+    <!-- param logger -->
+    <node name="param_logger" pkg="cola2_log" type="param_logger_node.py" output="screen"/>
+    <!-- cola2 version -->
+    <node name="cola2_version" pkg="cola2_log" type="cola2_version_node.py" output="screen"/>
+    <!-- mission reporter -->
+    <rosparam ns="mission_reporter" command="load" file="$(find cola2_log)/config/mission_reporter.yaml"/>
+    <node name="mission_reporter" pkg="cola2_log" type="mission_reporter" output="screen"/>
+</launch>

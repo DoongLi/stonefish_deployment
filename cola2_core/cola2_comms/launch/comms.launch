@@ -1,0 +1,4 @@
+<launch>
+  <rosparam ns="comms" command="load" file="$(find cola2_comms)/config/comms.yaml"/>
+  <node name="comms" pkg="cola2_comms" type="comms_node" output="screen"/>
+</launch>

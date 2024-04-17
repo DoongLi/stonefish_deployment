@@ -1,0 +1,13 @@
+[Unit]
+Description=Log PC boot and shutdown
+After=network.target
+After=systemd-user-sessions.service
+After=network-online.target
+
+[Service]
+Type=simple
+User=user
+ExecStart=/home/user/catkin_ws/devel/lib/cola2_log/shutdown_logger_startup_process user
+
+[Install]
+WantedBy=multi-user.target

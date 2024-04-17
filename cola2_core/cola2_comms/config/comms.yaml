@@ -1,0 +1,10 @@
+# max time since last custom input reception to still send it
+custom_max_time: 1.0
+# check that vehicle continuously receives modem messages
+usbl_safe_always_on: false
+# time between messages sent to modem
+send_to_modem_period: 0.5
+# max message size (defined by modem) better be defined in the modem driver config
+max_message_size: 64
+# letter that identifies the sender (1 character)
+identifier: "S"
