@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<robot name="girona500" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:arg name="arm_namespace" default="eca"/>
+
+    <xacro:include filename="$(find eca_5emicro_manipulator_description)/urdf/eca_5emicro_macro.urdf.xacro"/>
+    <xacro:include filename="$(find eca_5emicro_manipulator_description)/urdf/end_effectors/micro_grabber_macro.urdf.xacro"/>
+  
+    <xacro:eca_5emicro prefix="$(arg arm_namespace)"/>
+    <xacro:eca_5emicro_grabber prefix="$(arg arm_namespace)"/>
+
+</robot>

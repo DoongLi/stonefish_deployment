@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:macro name="eca_5emicro_grabber" params="prefix">
+
+        <material name="eca_gripper">
+            <color rgba="0.5 0.5 0.5 1" />
+        </material>
+
+        <link name="${prefix}/gripper_base">
+            <visual>
+                <geometry>
+                    <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/gripper_base.stl" scale="0.001 0.001 0.001" />
+                </geometry>
+                <origin rpy="0.0 ${-pi/2} 0.0" xyz="0.0 0.0 0.0" />
+                <material name="eca_gripper" />
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="0 0.0 0.005" />
+                <geometry>
+                    <box size="0.075 0.075 0.04" />
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="${prefix}/finger1">
+            <visual>
+                <geometry>
+                    <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/gripper_finger.stl" scale="0.001 0.001 0.001" />
+                </geometry>
+                <origin rpy="0.0 ${pi} 0.0" xyz="0.0 0.0 0.0" />
+                <material name="eca_gripper" />
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="-0.031 0.01 0.0" />
+                <geometry>
+                    <box size="0.08 0.038 0.06" />
+                </geometry>
+            </collision>
+        </link>
+
+        <link name="${prefix}/finger2">
+            <visual>
+                <geometry>
+                    <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/gripper_finger.stl" scale="0.001 0.001 0.001" />
+                </geometry>
+                <origin rpy="0.0 ${pi} 0.0" xyz="0.0 0.0 0.0" />
+                <material name="eca_gripper" />
+            </visual>
+            <collision>
+                <origin rpy="0 0 0" xyz="-0.031 0.01 0.0" />
+                <geometry>
+                    <box size="0.08 0.038 0.06" />
+                </geometry>
+            </collision>
+        </link>
+
+
+        <joint name="${prefix}/joint_gripper" type="revolute">
+            <parent link="${prefix}/gripper_base" />
+            <child link="${prefix}/finger1" />
+            <origin rpy="0.0 ${pi/2} 0.0" xyz="0.0 -0.029 0.0325" />
+            <limit effort="1.0" lower="0.0" upper="0.7" velocity="1.0" />
+
+        </joint>
+
+        <joint name="${prefix}/joint_gripper2" type="revolute">
+            <parent link="${prefix}/gripper_base" />
+            <child link="${prefix}/finger2" />
+            <origin rpy="0.0 ${pi/2} ${pi}" xyz="0.0 0.029 0.0325" />
+            <limit effort="1.0" lower="0.0" upper="0.7" velocity="1.0" />
+            <mimic joint="${prefix}/joint_gripper" multiplier="1" offset="0" />
+        </joint>
+
+    </xacro:macro>
+</robot>

@@ -1,0 +1,16 @@
+<launch>
+  <arg name="use_gui" default="true"/>
+  <arg name="robot_description" default="robot_description"/>
+  <group ns="Eca5EMicro">
+    <!-- Load robot description-->
+    <param name="$(arg robot_description)" command="xacro '$(find eca_5emicro_manipulator_description)/urdf/eca_5emicro.urdf.xacro'"/>
+
+    <!-- Start joint and robot state publisher-->
+    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" if="$(arg use_gui)"/>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <!-- Start rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find eca_5emicro_manipulator_description)/rviz/view_urdf.rviz" />
+  </group>
+</launch>

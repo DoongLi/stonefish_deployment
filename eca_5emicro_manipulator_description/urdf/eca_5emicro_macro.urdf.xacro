@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ECA 5E Micro mnipulator -->
+  <xacro:macro name="eca_5emicro" params="prefix joint4_continuous:=true">
+
+    <!-- Materials -->
+    <material name="${prefix}/black">
+      <color rgba="0.3 0.3 0.3 1" />
+    </material>
+
+    <!-- links -->
+    <link name="${prefix}/base_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/base_link.obj" />
+        </geometry>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+        <material name="${prefix}/black" />
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="-0.115 0.02 0.01" />
+        <geometry>
+          <box size="0.29 0.1 0.18" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}/link1">
+      <visual>
+        <geometry>
+          <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/link1.obj" />
+        </geometry>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+        <material name="${prefix}/black" />
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.052 0.0 0.0" />
+        <geometry>
+          <box size="0.15 0.09 0.13" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}/link2">
+      <visual>
+        <geometry>
+          <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/link2.obj" />
+        </geometry>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+        <material name="${prefix}/black" />
+      </visual>
+      <collision>
+        <origin rpy="0 0 0.25" xyz="0.115 0.011 0.0" />
+        <geometry>
+          <box size="0.28 0.165 0.2" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}/link3">
+      <visual>
+        <geometry>
+          <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/link3.obj" />
+        </geometry>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+        <material name="${prefix}/black" />
+      </visual>
+      <collision>
+        <origin rpy="${pi/2} 0 0" xyz="0.09 -0.079 0.0" />
+        <geometry>
+          <cylinder length="0.21" radius="0.051" />
+        </geometry>
+      </collision>
+    </link>
+
+    <link name="${prefix}/link4">
+      <visual>
+        <geometry>
+          <mesh filename="package://eca_5emicro_manipulator_description/resources/meshes/visual/link4.obj" scale="0.001 0.001 0.001" />
+        </geometry>
+        <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 -0.201" />
+        <material name="${prefix}/black" />
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0.0 0.0 -0.003" />
+        <geometry>
+          <box size="0.075 0.075 0.007" />
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${prefix}/joint1" type="revolute">
+      <parent link="${prefix}/base_link" />
+      <child link="${prefix}/link1" />
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1.0" lower="-0.43" upper="1.54" velocity="0.08" />
+    </joint>
+
+    <joint name="${prefix}/joint2" type="revolute">
+      <parent link="${prefix}/link1" />
+      <child link="${prefix}/link2" />
+      <origin rpy="${-pi/2} 0.0 0.0" xyz="0.1065 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1.0" lower="-0.10" upper="1.45" velocity="0.06" />
+    </joint>
+
+    <joint name="${prefix}/joint3" type="revolute">
+      <parent link="${prefix}/link2" />
+      <child link="${prefix}/link3" />
+      <origin rpy="0.0 0.0 0.0" xyz="0.23332 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1.0" lower="-1.22" upper="0.7" velocity="0.08" />
+    </joint>
+
+    <xacro:if value="${joint4_continuous}">
+      <joint name="${prefix}/joint4" type="continuous">
+        <parent link="${prefix}/link3" />
+        <child link="${prefix}/link4" />
+        <origin rpy="${pi/2} 0.0 0.0" xyz="0.103 -0.201 0.0" />
+        <axis xyz="0 0 1" />
+        <limit velocity="1.5" effort="1.0" />
+      </joint>
+    </xacro:if>
+
+    <xacro:unless value="${joint4_continuous}">
+      <joint name="${prefix}/joint4" type="revolute">
+        <parent link="${prefix}/link3" />
+        <child link="${prefix}/link4" />
+        <origin rpy="${pi/2} 0.0 0.0" xyz="0.103 0.0 0.201" />
+        <axis xyz="0 0 1" />
+
+        <limit effort="1.0" lower="-3.14" upper="3.14" velocity="1.5" />
+
+      </joint>
+    </xacro:unless>
+
+    <link name="${prefix}/link5" />
+    <joint name="${prefix}/joint5" type="prismatic">
+      <parent link="${prefix}/link4" />
+      <child link="${prefix}/link5" />
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <axis xyz="0 0 1" />
+      <limit effort="1.0" lower="0.0" upper="0.02" velocity="0.05" />
+    </joint>
+
+  </xacro:macro>
+</robot>
