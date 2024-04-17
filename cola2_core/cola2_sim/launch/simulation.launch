@@ -1,0 +1,11 @@
+<launch>
+    <!-- dynamics -->
+    <rosparam ns="dynamics" command="load" file="$(find cola2_sim)/config/dynamics.yaml"/>
+    <node name="dynamics" pkg="cola2_sim" type="dynamics_node" output="screen"/>
+    <!-- sim_auv_nav_sensors -->
+    <rosparam ns="sim_auv_nav_sensors" command="load" file="$(find cola2_sim)/config/sim_auv_nav_sensors.yaml"/>
+    <node name="sim_auv_nav_sensors" pkg="cola2_sim" type="sim_auv_nav_sensors_node.py" output="screen"/>
+    <!-- sim_internal_sensort -->
+    <rosparam ns="sim_internal_sensors" command="load" file="$(find cola2_sim)/config/sim_internal_sensors.yaml"/>
+    <node name="sim_internal_sensors" pkg="cola2_sim" type="sim_internal_sensors_node" output="screen"/>
+</launch>

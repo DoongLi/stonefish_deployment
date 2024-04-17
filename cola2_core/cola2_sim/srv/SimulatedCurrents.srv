@@ -1,0 +1,5 @@
+bool enabled
+float64[3] current_mean
+float64[3] current_sigma
+---
+bool Success

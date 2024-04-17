@@ -1,0 +1,3 @@
+<launch>
+  <test pkg="cola2_safety" type="test_battery_level_rule" test-name="test_battery_level_rule"/>
+</launch>

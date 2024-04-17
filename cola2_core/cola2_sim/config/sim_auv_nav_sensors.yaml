@@ -1,0 +1,27 @@
+# Sensor publication periods
+gps_period: 1.0
+depth_period: 0.2
+dvl_period: 0.2
+imu_period: 0.05
+
+# Other
+sea_bottom_depth: 15.0
+sound_speed: 1500
+
+# Sensors covariances (simulated error)
+gps_position_covariance: [0.25, 0.25]
+depth_pressure_covariance: 0.01
+dvl_velocity_covariance: [0.0015, 0.0015, 0.0015]
+imu_orientation_covariance: [0.0001, 0.0001, 0.0001]
+
+# Sensors covariances (message covariance)
+output_gps_position_covariance: [0.5, 0.5]
+output_depth_pressure_covariance: 0.1
+output_dvl_velocity_covariance: [0.02, 0.02, 0.02]
+output_imu_orientation_covariance: [0.1, 0.1, 0.1]
+
+# USBL simulation
+usbl_depth_start: 2.0
+output_usbl_position_covariance: 3.5
+usbl_position_covariance: 1.0
+usbl_period: 0

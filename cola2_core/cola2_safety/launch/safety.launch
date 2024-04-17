@@ -1,0 +1,19 @@
+<launch>
+    <!-- safe_depth_altitude -->
+    <rosparam ns="safe_depth_altitude" command="load" file="$(find cola2_safety)/config/safe_depth_altitude.yaml"/>
+    <node name="safe_depth_altitude" pkg="cola2_safety" type="safe_depth_altitude_node" output="screen"/>
+
+    <!-- safety_supervisor -->
+    <rosparam ns="safety_supervisor" command="load" file="$(find cola2_safety)/config/safety_supervisor.yaml"/>
+    <node name="safety_supervisor" pkg="cola2_safety" type="safety_supervisor_node" output="screen"/>
+
+    <!-- safety_supervisor_checker -->
+    <node name="safety_supervisor_checker" pkg="cola2_safety" type="safety_supervisor_checker_node" output="screen"/>
+
+    <!-- virtual_cage -->
+    <rosparam ns="virtual_cage" command="load" file="$(find cola2_safety)/config/virtual_cage.yaml"/>
+    <node name="virtual_cage" pkg="cola2_safety" type="virtual_cage_node" output="screen"/>
+
+    <!-- watchdog -->
+    <node name="watchdog_timer" pkg="cola2_safety" type="watchdog_timer_node" output="screen"/>
+</launch>

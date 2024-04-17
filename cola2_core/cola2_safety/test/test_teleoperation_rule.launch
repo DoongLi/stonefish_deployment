@@ -1,0 +1,3 @@
+<launch>
+  <test pkg="cola2_safety" type="test_teleoperation_rule" test-name="test_teleoperation_rule"/>
+</launch>

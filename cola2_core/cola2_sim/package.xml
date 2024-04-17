@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cola2_sim</name>
+  <version>24.1.4</version>
+  <description>The cola2_sim package</description>
+  <maintainer email="software@iquarobotics.com">Iqua Robotics</maintainer>
+  <license>Iqua Robotics</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- ROS Dependencies -->
+  <depend>rospy</depend>
+  <depend>tf</depend>
+  <depend>std_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>dynamic_reconfigure</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>message_generation</depend>
+  <depend>message_runtime</depend>
+
+  <!-- COLA2 Dependencies -->
+  <depend>cola2_lib_ros</depend>
+  <depend>cola2_msgs</depend>
+  <depend>cola2_control</depend>
+</package>

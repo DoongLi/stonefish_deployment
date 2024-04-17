@@ -1,0 +1,3 @@
+<launch>
+  <test pkg="cola2_safety" type="test_common" test-name="test_common"/>
+</launch>

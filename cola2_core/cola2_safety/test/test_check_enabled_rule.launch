@@ -1,0 +1,3 @@
+<launch>
+  <test pkg="cola2_safety" type="test_check_enabled_rule" test-name="test_check_enabled_rule"/>
+</launch>
