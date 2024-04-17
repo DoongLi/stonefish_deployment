@@ -1,0 +1,353 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 0
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /tf1/Frames1
+        - /world_origin1
+        - /navigator_odometry1/Covariance1
+        - /navigator_odometry1/Covariance1/Position1
+      Splitter Ratio: 0.6096649765968323
+    Tree Height: 576
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 127; 127; 127
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 100
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Class: rviz/TF
+      Enabled: false
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Marker Scale: 1
+      Name: tf
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: world_origin
+      Radius: 0.10000000149011612
+      Reference Frame: world_ned
+      Value: true
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: robot_axes
+      Radius: 0.10000000149011612
+      Reference Frame: girona500/base_link
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        girona500/base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        girona500/base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        girona500/bumblebee2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/dvl:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/dvl_altitude:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/gps:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/igc_gyro:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/imu:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/imu_filter:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/modem:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/multibeam:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/pressure:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/profiler:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/sidescan_port:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/sidescan_starbord:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/sound_velocity:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/thruster_0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/thruster_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/thruster_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/thruster_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        girona500/thruster_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+      Name: robot_model
+      Robot Description: girona500/robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Angle Tolerance: 0.20000000298023224
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: false
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 52; 101; 164
+          Scale: 0.5
+          Value: true
+        Value: true
+      Enabled: false
+      Keep: 1000
+      Name: navigator_odometry
+      Position Tolerance: 1
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic: /girona500/navigator/odometry
+      Unreliable: false
+      Value: false
+    - Class: rviz/MarkerArray
+      Enabled: false
+      Marker Topic: /girona500/navigator/markers/landmarks
+      Name: navigator_landmarks
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: false
+      Keep: 100
+      Name: simulated_odometry
+      Position Tolerance: 0.10000000149011612
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic: /girona500/dynamics/odometry
+      Unreliable: false
+      Value: false
+    - Alpha: 0.5
+      Buffer Length: 1
+      Class: rviz/Range
+      Color: 255; 255; 255
+      Enabled: false
+      Name: altitude
+      Queue Size: 100
+      Topic: /girona500/navigator/altitude
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: false
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: trajectory_path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic: /girona500/captain/trajectory_path
+      Unreliable: false
+      Value: false
+    - Alpha: 1
+      Class: rviz/PointStamped
+      Color: 204; 41; 204
+      Enabled: false
+      History Length: 1
+      Name: pilot_goal
+      Radius: 0.20000000298023224
+      Topic: /girona500/pilot/goal
+      Unreliable: false
+      Value: false
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /girona500/pilot/waypoint_marker
+      Name: pilot_waypoint
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /girona500/virtual_cage/markers/cage
+      Name: virtual_cage
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+  Enabled: true
+  Global Options:
+    Background Color: 165; 165; 165
+    Default Light: true
+    Fixed Frame: world
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 38.78305435180664
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 1.1145094633102417
+        Y: -10.536128044128418
+        Z: 1.6747983694076538
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.7847965955734253
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 3.2793967723846436
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1025
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000002000000000000016a000003cefc0200000003fb000000100044006900730070006c00610079007301000000160000027d000000c900fffffffb0000000a0056006900650077007301000002990000014b000000a400fffffffb0000000c00430061006d0065007200610000000041000000160000000000000000000000010000017a000003d3fc0200000001fb0000000a0049006d00610067006500000001f90000017f0000000000000000000005dd000003ce00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
+  Views:
+    collapsed: false
+  Width: 1869
+  X: 51
+  Y: 27

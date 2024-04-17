@@ -1,0 +1,53 @@
+# Define the REQUEST
+
+# Initial state
+float64 initial_latitude
+float64 initial_longitude
+float64 initial_depth
+
+# Final state
+float64 final_latitude
+float64 final_longitude
+float64 final_depth
+float64 final_yaw
+float64 final_altitude
+
+# Heave mode
+uint64 heave_mode
+uint64 DEPTH=0
+uint64 ALTITUDE=1
+uint64 BOTH=2
+
+# Surge velocity
+float64 surge_velocity
+
+# Tolerance
+float64 tolerance_xy
+
+# Timeout
+float64 timeout
+
+# Controller type
+uint64 controller_type
+uint64 SECTION=0
+uint64 ANCHOR=1
+uint64 HOLONOMIC_KEEP_POSITION=2
+
+# Requester and priority
+cola2_msgs/GoalDescriptor goal
+
+---
+# Define the RESULT
+
+# State
+uint64 state
+uint64 SUCCESS=0
+uint64 TIMEOUT=1
+uint64 FAILURE=2
+
+---
+# Define a FEEDBACK
+
+# Errors
+float64 distance_to_end
+float64 cross_track_error

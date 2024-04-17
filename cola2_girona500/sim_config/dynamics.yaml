@@ -1,0 +1,68 @@
+# Frames
+world_frame_id: "world_ned"
+
+# Period
+period: 0.05
+
+# Initial state in meters and rads [X, Y, Z, Roll, Pitch, Yaw]
+initial_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+initial_velocity: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+# Vehicle properties
+density: 1030.0
+mass: 180.0
+buoyancy: 182.0
+buoyancy_center: [0.0, 0.0, -0.04]
+radius: 0.2
+tensor: [34.2, 0.0, 0.0, 0.0, 48.1, 0.0, 0.0, 0.0, 40.7]
+damping: [-40.0, -40.0, -40.0, -10.0, -10.0, -10.0]
+quadratic_damping: [-163.0, -600.0, -600.0, -80.0, -80.0, -80.0]
+
+# Thrusters info (not used if use_force_topic is set to true)
+number_of_thrusters: 5
+thrusters_tau: 0.1  # Physical property of the thruster
+thrusters_max_step: 1.0
+thrusters_limiter: [1.0, 1.0, 1.0]
+thrusters_symmetric: true
+thrusters_matrix: [-1.0, -1.0,  0.0,  0.0, 0.0,
+                   0.0,  0.0,  0.0,  0.0, 1.0,
+                   0.0,  0.0, -1.0, -1.0, 0.0,
+                   0.0,  0.0,  0.0,  0.0, 0.0,
+                   0.0, 0.0, 0.5587, -0.5587, 0.0,
+                   -0.2432, 0.2432, 0.0, 0.0, 0.0]
+
+# Thruster 1
+thruster_1_poly_positive: [0.0473235, 0.063145, -0.00256629, 0.000052432528, -0.00000050454768, 0.000000001842152]
+thruster_1_poly_negative: [0.04997604, 0.05975017, -0.0022952, 0.0000439588388, -0.00000039543457, 0.00000000134487]
+thruster_1_max_force_positive: 100.0
+thruster_1_max_force_negative: 100.0
+
+# Thruster 2
+thruster_2_poly_positive: [0.0473235, 0.063145, -0.00256629, 0.000052432528, -0.00000050454768, 0.000000001842152]
+thruster_2_poly_negative: [0.04997604, 0.05975017, -0.0022952, 0.0000439588388, -0.00000039543457, 0.00000000134487]
+thruster_2_max_force_positive: 100.0
+thruster_2_max_force_negative: 100.0
+
+# Thruster 3
+thruster_3_poly_positive: [0.0473235, 0.063145, -0.00256629, 0.000052432528, -0.00000050454768, 0.000000001842152]
+thruster_3_poly_negative: [0.04997604, 0.05975017, -0.0022952, 0.0000439588388, -0.00000039543457, 0.00000000134487]
+thruster_3_max_force_positive: 100.0
+thruster_3_max_force_negative: 100.0
+
+# Thruster 4
+thruster_4_poly_positive: [0.0473235, 0.063145, -0.00256629, 0.000052432528, -0.00000050454768, 0.000000001842152]
+thruster_4_poly_negative: [0.04997604, 0.05975017, -0.0022952, 0.0000439588388, -0.00000039543457, 0.00000000134487]
+thruster_4_max_force_positive: 100.0
+thruster_4_max_force_negative: 100.0
+
+# Thruster 5
+thruster_5_poly_positive: [0.0473235, 0.063145, -0.00256629, 0.000052432528, -0.00000050454768, 0.000000001842152]
+thruster_5_poly_negative: [0.04997604, 0.05975017, -0.0022952, 0.0000439588388, -0.00000039543457, 0.00000000134487]
+thruster_5_max_force_positive: 100.0
+thruster_5_max_force_negative: 100.0
+
+# Fins ("" topic means disabled)
+fins_topic: ""
+
+# If this parameter is set, the input of the model is force
+use_force_topic: false

@@ -1,0 +1,2 @@
+start_service: "/girona500/captain/enable_keep_position_non_holonomic"
+stop_service: "/girona500/captain/disable_all_keep_positions"

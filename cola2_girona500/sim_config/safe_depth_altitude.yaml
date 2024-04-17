@@ -1,0 +1,4 @@
+# Safe depth altitude parameters
+max_depth: 200.0
+min_altitude: 1.0
+min_altitude_starts_at_depth: 0.5

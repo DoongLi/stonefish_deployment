@@ -1,0 +1,64 @@
+<launch>
+  <!-- Configurable arguments -->
+  <arg name="robot_name" default="girona500"/>
+  <arg name="enable_keyboard" default="true"/>
+  <arg name="enable_joystick" default="false"/>
+  <arg name="joystick_device" default="/dev/input/js0"/>
+  <arg name="enable_gui" default="true"/>
+  <arg name="enable_rviz" default="true"/>
+  <arg name="robot_xacro" default="$(find girona500_description)/urdf/payload.urdf.xacro"/>
+
+  <!-- Static transform -->
+  <node name="world2ned" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 3.1415 world world_ned 100"/>
+
+  <!-- Namespace with robot name -->
+  <group ns="$(arg robot_name)">
+    <!-- Load configs (do not modify) -->
+    <include file="$(find cola2_girona500)/launch/sim_configuration.launch">
+      <arg name="robot_name" value="$(arg robot_name)"/>
+      <arg name="robot_xacro" value="$(arg robot_xacro)"/>
+    </include>
+
+    <!-- ################################################################################## -->
+    <!-- Override configs here-->
+
+    <!-- ################################################################################## -->
+
+    <!-- Load core -->
+    <include file="$(find cola2_girona500)/launch/sim_core.launch">
+      <arg name="robot_name" value="$(arg robot_name)"/>
+    </include>
+
+    <!-- Keyboard -->
+    <group if="$(arg enable_keyboard)">
+      <node name="keyboard" pkg="cola2_control" type="keyboard_node"/>
+      <node name="keyboard_to_teleoperation" pkg="cola2_control" type="keyboard_to_teleoperation_node.py"/>
+    </group>
+
+    <!-- Joystick -->
+    <group if="$(arg enable_joystick)">
+      <node name="joystick" pkg="joy" type="joy_node">
+        <param name="dev" value="$(arg joystick_device)"/>
+        <param name="dev_ff" value=""/>
+        <param name="deadzone" value="0.05"/>
+      </node>
+      <node name="logitech_fx10_to_teleoperation" pkg="cola2_control" type="logitech_fx10_to_teleoperation_node.py"/>
+    </group>
+
+    <!-- Throttle messages -->
+    <node name="navigation_throttle" pkg="topic_tools" type="throttle" args="messages navigator/navigation 4.0"/>
+    <node name="odometry_throttle" pkg="topic_tools" type="throttle" args="messages navigator/odometry 4.0"/>
+    <node name="merged_world_waypoint_req_throttle" pkg="topic_tools" type="throttle" args="messages controller/merged_world_waypoint_req 2.0"/>
+    <node name="merged_body_velocity_req_throttle" pkg="topic_tools" type="throttle" args="messages controller/merged_body_velocity_req 2.0"/>
+    <node name="merged_body_force_req_throttle" pkg="topic_tools" type="throttle" args="messages controller/merged_body_force_req 2.0"/>
+    <node name="thruster_setpoints_throttle" pkg="topic_tools" type="throttle" args="messages setpoints_selector/thruster_setpoints 4.0"/>
+
+    <!-- GUI mission interface -->
+    <include if="$(arg enable_gui)" file="$(find rosbridge_server)/launch/rosbridge_tcp.launch">
+      <arg name="port" value="9091"/>
+    </include>
+  </group>
+
+  <!-- RViz -->
+  <node if="$(arg enable_rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(find cola2_girona500)/scene/girona500.rviz"/>
+</launch>

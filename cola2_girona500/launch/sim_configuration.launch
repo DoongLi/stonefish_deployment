@@ -1,0 +1,33 @@
+<launch>
+  <!-- Input arguments -->
+  <arg name="robot_name"/>
+  <arg name="robot_xacro"/>
+
+  <!-- Load robot description -->
+  <include file="$(find girona500_description)/launch/girona500_description.launch">
+    <arg name="robot_name" value="$(arg robot_name)"/>
+    <arg name="robot_xacro" value="$(arg robot_xacro)"/>
+  </include>
+
+  <!-- Config folder -->
+  <arg name="config_folder" value="$(find cola2_girona500)/sim_config"/>
+
+  <!-- Common configs -->
+  <rosparam command="load" ns="captain" file="$(arg config_folder)/captain.yaml"/>
+  <rosparam command="load" ns="controller" file="$(arg config_folder)/controller.yaml"/>
+  <rosparam command="load" ns="default_param_handler" file="$(arg config_folder)/default_param_handler.yaml"/>
+  <rosparam command="load" ns="diagnostic_aggregator" file="$(arg config_folder)/diagnostic_aggregator.yaml"/>
+  <rosparam command="load" ns="logitech_fx10_to_teleoperation" file="$(arg config_folder)/logitech_fx10_to_teleoperation.yaml"/>
+  <rosparam command="load" ns="mission_reporter" file="$(arg config_folder)/mission_reporter.yaml"/>
+  <rosparam command="load" ns="navigator" file="$(arg config_folder)/navigator.yaml"/>
+  <rosparam command="load" ns="pilot" file="$(arg config_folder)/pilot.yaml"/>
+  <rosparam command="load" ns="safe_depth_altitude" file="$(arg config_folder)/safe_depth_altitude.yaml"/>
+  <rosparam command="load" ns="safety_supervisor" file="$(arg config_folder)/safety_supervisor.yaml"/>
+  <rosparam command="load" ns="teleoperation" file="$(arg config_folder)/teleoperation.yaml"/>
+  <rosparam command="load" ns="virtual_cage" file="$(arg config_folder)/virtual_cage.yaml"/>
+
+  <!-- Simulation configs -->
+  <rosparam command="load" ns="dynamics" file="$(arg config_folder)/dynamics.yaml"/>
+  <rosparam command="load" ns="sim_auv_nav_sensors" file="$(arg config_folder)/sim_auv_nav_sensors.yaml"/>
+  <rosparam command="load" ns="sim_internal_sensors" file="$(arg config_folder)/sim_internal_sensors.yaml"/>
+</launch>

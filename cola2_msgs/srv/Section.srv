@@ -1,0 +1,37 @@
+# Initial state
+float64 initial_x
+float64 initial_y
+float64 initial_depth
+
+# Final state
+float64 final_x
+float64 final_y
+float64 final_depth
+float64 final_altitude
+
+# Reference frame for both the inital and final positions
+uint8 NED=0
+uint8 GLOBAL=1
+uint8 reference
+
+# Heave mode
+uint64 heave_mode
+uint64 DEPTH=0
+uint64 ALTITUDE=1
+uint64 BOTH=2
+
+# Surge velocity
+float64 surge_velocity
+
+# Tolerance
+float64 tolerance_xy
+
+# Timeout
+float64 timeout
+
+# No altitude reactive behavior
+bool no_altitude_goes_up
+
+---
+bool success
+string message

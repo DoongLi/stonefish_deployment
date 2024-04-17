@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Add element -->
+  <xacro:macro name="add_element" params="element parent mesh *origin">
+
+    <!-- Link -->
+    <link name="$(arg robot_namespace)/${element}">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="${mesh}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="${mesh}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 1" rpy="0 0 0"/>
+        <mass value="1"/>
+        <inertia
+                ixx="1.0" ixy="0.0" ixz="0.0"
+                iyy="1.0" iyz="0.0"
+                izz="1.0"/>
+      </inertial>
+    </link>
+
+    <!-- Joint -->
+    <joint name="$(arg robot_namespace)/${parent}_to_${element}_joint" type="fixed">
+      <parent link="$(arg robot_namespace)/${parent}" />
+      <child link="$(arg robot_namespace)/${element}" />
+      <xacro:insert_block name="origin" />
+    </joint>
+
+  </xacro:macro>
+
+  <!-- Add element no mesh-->
+  <xacro:macro name="add_element_no_mesh" params="element parent *origin">
+
+    <!-- Link -->
+    <link name="$(arg robot_namespace)/${element}">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.1"/>
+        <inertia
+                ixx="1.0" ixy="0.0" ixz="0.0"
+                iyy="1.0" iyz="0.0"
+                izz="1.0"/>
+      </inertial>
+    </link>
+
+    <!-- Joint -->
+    <joint name="$(arg robot_namespace)/${parent}_to_${element}_joint" type="fixed">
+      <parent link="$(arg robot_namespace)/${parent}" />
+      <child link="$(arg robot_namespace)/${element}" />
+      <xacro:insert_block name="origin" />
+    </joint>
+
+  </xacro:macro>
+
+  <!-- Add link with basic physics -->
+  <xacro:macro name="add_link" params="element mesh *origin">
+    <!-- Link -->
+    <link name="$(arg robot_namespace)/${element}">
+      <visual>
+        <xacro:insert_block name="origin" />
+        <geometry>
+          <mesh filename="${mesh}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="${mesh}"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 1" rpy="0 0 0"/>
+        <mass value="1"/>
+        <inertia
+                ixx="1.0" ixy="0.0" ixz="0.0"
+                iyy="1.0" iyz="0.0"
+                izz="1.0"/>
+      </inertial>
+    </link>
+  </xacro:macro>
+
+
+  <!-- Add element to base link -->
+  <xacro:macro name="add_to_base_link" params="element mesh *origin">
+    <xacro:add_element element="${element}" parent="base_link" mesh="${mesh}">
+      <xacro:insert_block name="origin" />
+    </xacro:add_element>
+  </xacro:macro>
+
+  <xacro:macro name="add_to_base_link_no_mesh" params="element *origin">
+    <xacro:add_element_no_mesh element="${element}" parent="base_link">
+      <xacro:insert_block name="origin" />
+    </xacro:add_element_no_mesh>
+  </xacro:macro>
+
+  <!-- Thruster macro with integration of joint and link -->
+  <xacro:macro name="add_thruster" params="thruster_id mesh *origin">
+    <xacro:add_to_base_link element="thruster_${thruster_id}" mesh="${mesh}">
+      <xacro:insert_block name="origin" />
+    </xacro:add_to_base_link>
+  </xacro:macro>
+
+  <xacro:macro name="add_thruster_no_mesh" params="thruster_id *origin">
+    <xacro:add_to_base_link_no_mesh element="thruster_${thruster_id}">
+      <xacro:insert_block name="origin" />
+    </xacro:add_to_base_link_no_mesh>
+  </xacro:macro>
+
+</robot>

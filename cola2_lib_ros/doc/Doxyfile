@@ -1,0 +1,13 @@
+# using tags to separate programming languages
+# http://www.doxygen.nl/manual/external.html
+PROJECT_NAME           = "cola2_lib_ros (C++ API)"
+OUTPUT_DIRECTORY       = html/cpp
+INPUT                  = ../include doxygen_back.md
+FILE_PATTERNS          = *.md *.cpp *.h
+USE_MDFILE_AS_MAINPAGE = doxygen_back.md
+GENERATE_TREEVIEW      = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = .
+RECURSIVE              = YES
+FULL_PATH_NAMES        = NO
+EXTRACT_ALL            = YES
