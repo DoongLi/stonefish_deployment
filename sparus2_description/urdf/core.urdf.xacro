@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<!-- Robot -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Load macros -->
+  <xacro:include filename="$(find cola2_lib_ros)/src/cola2_lib_ros/urdf_macros.xacro"/>
+
+  <!-- Base link -->
+  <link name="$(arg robot_namespace)/base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://sparus2_description/meshes/sparus2.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+  </link>
+
+
+  <!-- dvl -->
+  <xacro:add_to_base_link_no_mesh element="dvl">
+    <origin rpy="3.1416 0.0000 2.3562" xyz="-0.413 0.000 0.113"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- dvl_altitude -->
+  <xacro:add_element_no_mesh element="dvl_altitude" parent="dvl">
+    <origin rpy="0.0000 1.5708 0.0000" xyz="0.000 0.000 0.000"/>
+  </xacro:add_element_no_mesh>
+
+  <!-- gps -->
+  <xacro:add_to_base_link_no_mesh element="gps">
+    <origin rpy="0.0000 0.0000 0.0000" xyz="-0.386 0.000 -0.356"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- imu -->
+  <xacro:add_to_base_link_no_mesh element="imu">
+    <origin rpy="1.5708 0.0000 1.5708" xyz="0.364 -0.021 -0.085"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- imu_filter -->
+  <xacro:add_to_base_link_no_mesh element="imu_filter">
+    <origin rpy="0.0000 0.0000 0.0000" xyz="0.364 -0.021 -0.085"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- pressure -->
+  <xacro:add_to_base_link_no_mesh element="pressure">
+    <origin rpy="0.0000 0.0000 0.0000" xyz="0.390 0.000 -0.033"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_0 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_0">
+    <origin rpy="0.0000 -1.5708 0.0000" xyz="0.000 0.000 0.080"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_1 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_1">
+    <origin rpy="0.0000 0.0000 3.1416" xyz="-0.590 0.170 0.000"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_2 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_2">
+    <origin rpy="0.0000 0.0000 3.1416" xyz="-0.590 -0.170 0.000"/>
+  </xacro:add_to_base_link_no_mesh>
+
+</robot>

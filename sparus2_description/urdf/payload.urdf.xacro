@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="sparus2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Arguments -->
+  <!--
+    The robot_namespace argument has to be set mandatory by the user when calling the xacro
+    file or using the following line to set it as default.
+    <xacro:arg name="robot_namespace" default="sparus2"/>
+  -->
+  <xacro:arg name="robot_xacro" default="$(find sparus2_description)/urdf/core.urdf.xacro"/>
+
+  <!-- Load basic sparus2 urdf -->
+  <xacro:include filename="$(arg robot_xacro)"/>
+
+</robot>

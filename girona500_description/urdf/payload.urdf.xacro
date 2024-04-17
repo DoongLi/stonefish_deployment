@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="girona500" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Arguments -->
+  <!--
+    The robot_namespace argument has to be set mandatory by the user when calling the xacro
+    file or using the following line to set it as default.
+    <xacro:arg name="robot_namespace" default="girona500"/>
+  -->
+  <xacro:arg name="robot_xacro" default="$(find girona500_description)/urdf/core.urdf.xacro"/>
+
+  <!-- Load basic girona500 urdf -->
+  <xacro:include filename="$(arg robot_xacro)"/>
+
+
+</robot>

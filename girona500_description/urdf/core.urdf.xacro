@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+
+<!-- Robot -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Load macros -->
+  <xacro:include filename="$(find cola2_lib_ros)/src/cola2_lib_ros/urdf_macros.xacro"/>
+
+  <!-- Base link -->
+  <link name="$(arg robot_namespace)/base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.00001" radius="0.00001"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- Robot mesh -->
+  <xacro:add_to_base_link element="base" mesh="package://girona500_description/meshes/girona500.dae">
+    <origin rpy="-1.57 0 3.14" xyz="0.7 0 0.4"/>
+  </xacro:add_to_base_link>
+
+
+  <!-- dvl -->
+  <xacro:add_to_base_link_no_mesh element="dvl">
+    <origin rpy="3.1416 0.0000 -0.7854" xyz="-0.643 0.000 0.538"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- dvl_altitude -->
+  <xacro:add_element_no_mesh element="dvl_altitude" parent="dvl">
+    <origin rpy="0.0000 1.5708 0.0000" xyz="0.000 0.000 0.000"/>
+  </xacro:add_element_no_mesh>
+
+  <!-- gps -->
+  <xacro:add_to_base_link_no_mesh element="gps">
+    <origin rpy="0.0000 0.0000 0.0000" xyz="-0.436 -0.350 -0.657"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- imu -->
+  <xacro:add_to_base_link_no_mesh element="imu">
+    <origin rpy="1.5708 0.0000 0.0000" xyz="0.076 0.372 -0.301"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- imu_filter -->
+  <xacro:add_to_base_link_no_mesh element="imu_filter">
+    <origin rpy="0.0000 0.0000 0.0000" xyz="0.076 0.372 -0.301"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- pressure -->
+  <xacro:add_to_base_link_no_mesh element="pressure">
+    <origin rpy="0.0000 0.0000 0.0000" xyz="0.076 0.372 -0.301"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_0 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_0">
+    <origin rpy="0.0000 0.0000 3.1416" xyz="-0.355 0.261 0.020"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_1 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_1">
+    <origin rpy="0.0000 0.0000 3.1416" xyz="-0.355 -0.261 0.020"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_2 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_2">
+    <origin rpy="0.0000 1.5708 0.0000" xyz="0.530 0.000 -0.310"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_3 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_3">
+    <origin rpy="0.0000 1.5708 0.0000" xyz="-0.585 0.000 -0.310"/>
+  </xacro:add_to_base_link_no_mesh>
+
+  <!-- thruster_4 -->
+  <xacro:add_to_base_link_no_mesh element="thruster_4">
+    <origin rpy="0.0000 0.0000 -1.5708" xyz="0.000 0.000 0.000"/>
+  </xacro:add_to_base_link_no_mesh>
+
+</robot>
