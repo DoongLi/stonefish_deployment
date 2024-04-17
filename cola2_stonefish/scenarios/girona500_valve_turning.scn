@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<scenario>
+	<environment>
+		<ned latitude="41.7777" longitude="3.0333"/>
+		<ocean />
+		<atmosphere>
+			<sun azimuth="50.0" elevation="50.0"/>
+		</atmosphere>
+	</environment>
+
+	<materials>
+		<material name="Neutral" density="1000.0" restitution="0.1"/>
+		<material name="Rock" density="3000.0" restitution="0.8"/>
+		<material name="Fiberglass" density="1500.0" restitution="0.3"/>
+		<material name="Aluminium" density="2710.0" restitution="0.5"/>
+		<friction_table>
+			<friction material1="Neutral" material2="Neutral" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Rock" static="0.2" dynamic="0.1"/>
+			<friction material1="Neutral" material2="Fiberglass" static="0.5" dynamic="0.2"/>
+			<friction material1="Neutral" material2="Aluminium" static="0.1" dynamic="0.02"/>
+			<friction material1="Rock" material2="Rock" static="0.9" dynamic="0.7"/>
+			<friction material1="Rock" material2="Fiberglass" static="0.6" dynamic="0.4"/>
+			<friction material1="Rock" material2="Aluminium" static="0.6" dynamic="0.3"/>
+			<friction material1="Fiberglass" material2="Fiberglass" static="0.5" dynamic="0.2"/>
+			<friction material1="Fiberglass" material2="Aluminium" static="0.5" dynamic="0.2"/>
+			<friction material1="Aluminium" material2="Aluminium" static="0.8" dynamic="0.5"/>
+		</friction_table>
+	</materials>
+
+	<looks>
+		<look name="black" gray="0.05" roughness="0.2"/>
+		<look name="yellow" rgb="1.0 0.9 0.0" roughness="0.3"/>
+		<look name="tbar_back" gray="1.0" roughness="0.4" metalness="0.5" texture="girona500/tbar_back_tex.png"/>
+		<look name="tbar_front" gray="1.0" roughness="0.4" metalness="0.5" texture="girona500/tbar_front_tex.png"/>
+		<look name="lower_hull" gray="1.0" roughness="0.3" texture="girona500/lower_hull_tex.png"/>
+		<look name="gray" gray="0.5" roughness="0.4" metalness="0.5"/>
+		<look name="tank" rgb="0.9 0.9 0.9" roughness="0.9"/>
+		<look name="propeller" gray="1.0" roughness="0.3" texture="girona500/propeller_tex.png"/>
+		<look name="duct" gray="0.1" roughness="0.4" metalness="0.5"/>
+		<look name="manipulator" rgb="0.2 0.15 0.1" roughness="0.6" metalness="0.8"/>
+		<look name="link4" gray="1.0" roughness="0.6" metalness="0.8" texture="eca5emicro/link4_tex.png"/>
+		<look name="ee" rgb="0.59 0.56 0.51" roughness="0.6" metalness="0.8"/>
+		<look name="panel" gray="1.0" roughness="0.5" texture="valve_panel_tex.png"/>
+	</looks>
+
+	<static name="Tank" type="model">
+		<physical>
+			<mesh filename="cirs_tank.obj" scale="1.0"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+		</physical>
+		<material name="Rock"/>
+		<look name="tank"/>
+		<world_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+	</static>
+
+	<robot name="valve_panel" fixed="true" self_collisions="false">
+		<base_link name="Panel" type="box" physics="submerged">
+			<dimensions xyz="0.1 0.8 0.5"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<material name="Aluminium"/>
+			<look name="panel"/>
+		</base_link>
+
+		<link name="Valve1" type="compound" physics="submerged">
+			<external_part name="HandleA" type="cylinder" physics="submerged">
+				<dimensions radius="0.008" height="0.12"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+			<external_part name="HandleB" type="cylinder" physics="submerged">
+				<dimensions radius="0.01" height="0.1"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="1.571 0.0 0.0" xyz="0.0 0.0 0.06"/>
+			</external_part>
+		</link>
+
+		<link name="Valve2" type="compound" physics="submerged">
+			<external_part name="HandleA" type="cylinder" physics="submerged">
+				<dimensions radius="0.008" height="0.12"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+			<external_part name="HandleB" type="cylinder" physics="submerged">
+				<dimensions radius="0.01" height="0.1"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="1.571 0.0 0.0" xyz="0.0 0.0 0.06"/>
+			</external_part>
+		</link>
+
+		<link name="Valve3" type="compound" physics="submerged">
+			<external_part name="HandleA" type="cylinder" physics="submerged">
+				<dimensions radius="0.008" height="0.12"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+			<external_part name="HandleB" type="cylinder" physics="submerged">
+				<dimensions radius="0.01" height="0.1"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="1.571 0.0 0.0" xyz="0.0 0.0 0.06"/>
+			</external_part>
+		</link>
+
+		<link name="Valve4" type="compound" physics="submerged">
+			<external_part name="HandleA" type="cylinder" physics="submerged">
+				<dimensions radius="0.008" height="0.12"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			</external_part>
+			<external_part name="HandleB" type="cylinder" physics="submerged">
+				<dimensions radius="0.01" height="0.1"/>
+				<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+				<material name="Aluminium"/>
+				<look name="gray"/>
+				<compound_transform rpy="1.571 0.0 0.0" xyz="0.0 0.0 0.06"/>
+			</external_part>
+		</link>
+
+		<joint name="valve1" type="revolute">
+			<parent name="Panel"/>
+			<child name="Valve1"/>
+			<origin rpy="0.0 1.571 0.0" xyz="0.1 0.25 0.1257"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<damping value="2.0"/>
+		</joint>
+
+		<joint name="valve2" type="revolute">
+			<parent name="Panel"/>
+			<child name="Valve2"/>
+			<origin rpy="0.0 1.571 0.0" xyz="0.1 0.0 0.1257"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<damping value="2.0"/>
+		</joint>
+
+		<joint name="valve3" type="revolute">
+			<parent name="Panel"/>
+			<child name="Valve3"/>
+			<origin rpy="0.0 1.571 0.0" xyz="0.1 -0.25 0.1257"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<damping value="2.0"/>
+		</joint>
+
+		<joint name="valve4" type="revolute">
+			<parent name="Panel"/>
+			<child name="Valve4"/>
+			<origin rpy="0.0 1.571 0.0" xyz="0.1 0.0 -0.1257"/>
+			<axis xyz="0.0 0.0 1.0"/>
+			<damping value="2.0"/>
+		</joint>
+
+		<sensor name="Encoder1" type="encoder" rate="10">
+			<joint name="valve1"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<ros_publisher topic="/valve_panel/valve_state"/>
+		</sensor>
+
+		<sensor name="Encoder2" type="encoder" rate="10">
+			<joint name="valve2"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<ros_publisher topic="/valve_panel/valve_state"/>
+		</sensor>
+
+		<sensor name="Encoder3" type="encoder" rate="10">
+			<joint name="valve3"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<ros_publisher topic="/valve_panel/valve_state"/>
+		</sensor>
+
+		<sensor name="Encoder4" type="encoder" rate="10">
+			<joint name="valve4"/>
+			<origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+			<ros_publisher topic="/valve_panel/valve_state"/>
+		</sensor>
+
+		<world_transform rpy="0.0 0.0 -1.57" xyz="0.0 3.9 2.5"/>
+	</robot>
+
+	<include file="$(find cola2_stonefish)/scenarios/girona500_eca5emicro.scn">
+		<arg name="position" value="0.0 0.0 1.0"/>
+	</include>
+</scenario>

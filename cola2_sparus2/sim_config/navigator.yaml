@@ -1,0 +1,43 @@
+# Initialize EKF filter using GPS information
+initialize_filter_from_gps: true
+# GPS samples to init position
+gps_samples_to_init: 10
+
+# Apply GPS updates in the EKF filter
+use_gps_data: true
+# Apply USBL updates in the EKF filter
+use_usbl_data: true
+
+# Apply depth updates in the EKF filter
+use_depth_data: true
+# Apply dvl updates in the EKF filter
+use_dvl_data: true
+
+# Collect a navigation logfile for debug
+enable_debug: false
+
+# NED origin when not init by GPS
+ned_latitude: 41.7777
+ned_longitude: 3.0333
+
+# Init depth sensor when GPS is first initialized
+initialize_depth_sensor_offset: false
+# Real distance between depth sensor and water surface
+surface_to_depth_sensor_distance: 0.05
+# Depth sensor offset value (can be overwritten by srvSetDepthSensorOffset)
+depth_sensor_offset: 0.0
+
+# Ignore DVL velocities bigger than
+dvl_max_v: 2.5
+# Water density (used in depth sensor)
+water_density: 1030.0
+
+# Use a fallback DVL sensor (i.e. dynamics model) when no DVL messages for more than delay time (0.0 disables it)
+dvl_fallback_delay: 0.0
+
+# Covariances for the EKF
+initial_state_covariance: [2.0, 2.0, 0.5, 0.04, 0.04, 0.04]
+prediction_model_covariance: [0.02, 0.02, 0.02]
+
+# Safety
+min_diagnostics_frequency: 25.0

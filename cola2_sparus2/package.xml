@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cola2_sparus2</name>
+  <version>24.1.0</version>
+  <description>The cola2_sparus2 package</description>
+  <maintainer email="software@iquarobotics.com">Iqua Robotics</maintainer>
+  <license>Iqua Robotics</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- ROS Dependencies -->
+  <depend>diagnostic_aggregator</depend>
+  <depend>joy</depend>
+  <depend>rosbridge_server</depend>
+  <depend>rviz</depend>
+  <depend>tf</depend>
+  <depend>topic_tools</depend>
+
+  <!-- COLA2 Dependencies -->
+  <depend>sparus2_description</depend>
+</package>

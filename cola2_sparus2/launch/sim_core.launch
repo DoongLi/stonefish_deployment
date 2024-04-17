@@ -1,0 +1,43 @@
+<launch>
+  <!-- Input arguments -->
+  <arg name="robot_name"/>
+
+  <!-- Safety nodes -->
+  <node name="diagnostic_aggregator" pkg="diagnostic_aggregator" type="aggregator_node">
+    <remap from="/diagnostics" to="/$(arg robot_name)/diagnostics"/>
+    <remap from="/diagnostics_agg" to="/$(arg robot_name)/diagnostics_agg"/>
+    <remap from="/diagnostics_toplevel_state" to="/$(arg robot_name)/diagnostics_toplevel_state"/>
+  </node>
+  <node name="safe_depth_altitude" pkg="cola2_safety" type="safe_depth_altitude_node" output="screen"/>
+  <node name="safety_supervisor" pkg="cola2_safety" type="safety_supervisor_node" output="screen"/>
+  <node name="safety_supervisor_checker" pkg="cola2_safety" type="safety_supervisor_checker_node" output="screen"/>
+  <node name="virtual_cage" pkg="cola2_safety" type="virtual_cage_node" output="screen"/>
+  <node name="watchdog_timer" pkg="cola2_safety" type="watchdog_timer_node" output="screen"/>
+
+  <!-- Simulation nodes -->
+  <node name="dynamics" pkg="cola2_sim" type="dynamics_node"/>
+  <node name="sim_auv_nav_sensors" pkg="cola2_sim" type="sim_auv_nav_sensors_node.py" output="screen"/>
+  <node name="sim_internal_sensors" pkg="cola2_sim" type="sim_internal_sensors_node" output="screen"/>
+
+  <!-- Navigation -->
+  <node name="navigator" pkg="cola2_nav" type="navigator_node" output="screen"/>
+
+  <!-- Control stack -->
+  <node name="captain" pkg="cola2_control" type="captain_node" output="screen">
+    <param name="vehicle_config_launch_mission_package" value="cola2_$(arg robot_name)"/>
+  </node>
+  <node name="controller" pkg="cola2_control" type="controller_node"/>
+  <node name="pilot" pkg="cola2_control" type="pilot_node" output="screen"/>
+  <node name="teleoperation" pkg="cola2_control" type="teleoperation_node" output="screen"/>
+  <node name="test_thrusters" pkg="cola2_control" type="test_thrusters.py" output="screen"/>
+
+  <!-- Log -->
+  <node name="bag_recorder" pkg="cola2_log" type="bag_recorder_node.py" output="screen"/>
+  <node name="cola2_version" pkg="cola2_log" type="cola2_version_node.py" output="screen"/>
+  <node name="computer_logger" pkg="cola2_log" type="computer_logger_node.py" respawn="true" output="screen"/>
+  <node name="default_param_handler" pkg="cola2_log" type="default_param_handler_node.py" respawn="true" output="screen">
+    <param name="config_folder" value="sim_config"/>
+  </node>
+  <node name="mission_reporter" pkg="cola2_log" type="mission_reporter" output="screen"/>
+  <node name="param_logger" pkg="cola2_log" type="param_logger_node.py" output="screen"/>
+</launch>

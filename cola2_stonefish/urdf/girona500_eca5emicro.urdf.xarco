@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot name="girona500_eca5emicro" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Load macros -->
+  <xacro:include filename="$(find cola2_lib_ros)/src/cola2_lib_ros/urdf_macros.xacro"/>
+  
+  <!-- Load Girona500 with payload -->
+  <xacro:include filename="$(find girona500_description)/urdf/payload.urdf.xacro"/>
+  
+  <!-- Load ECA 5E Micro manipulator without end-effector -->
+  <xacro:include filename="$(find eca_5emicro_manipulator_description)/urdf/eca_5emicro_macro.urdf.xacro"/>
+  <xacro:eca_5emicro prefix="$(arg robot_namespace)/$(arg manipulator_namespace)"/>
+  
+  <!-- Add fixed v-shaped gripper with camera-->
+  <link name="$(arg robot_namespace)/$(arg manipulator_namespace)/link4_ft">
+    <visual>
+      <geometry>
+        <mesh filename="package://cola2_stonefish/data/eca5emicro/link4_ft.obj" />
+      </geometry>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <material name="$(arg robot_namespace)/$(arg manipulator_namespace)/black" />
+    </visual>
+  </link>
+
+  <link name="$(arg robot_namespace)/$(arg manipulator_namespace)/gripper_base">
+    <visual>
+      <geometry>
+        <mesh filename="package://cola2_stonefish/data/eca5emicro/jawbase2.obj" />
+      </geometry>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <material name="$(arg robot_namespace)/$(arg manipulator_namespace)/black" />
+    </visual>
+  </link>
+  
+  <link name="$(arg robot_namespace)/$(arg manipulator_namespace)/finger1">
+    <visual>
+      <geometry>
+        <mesh filename="package://cola2_stonefish/data/eca5emicro/finger.obj" />
+      </geometry>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
+      <material name="$(arg robot_namespace)/$(arg manipulator_namespace)/black" />
+    </visual>
+  </link>
+
+  <link name="$(arg robot_namespace)/$(arg manipulator_namespace)/finger2">
+    <visual>
+      <geometry>
+        <mesh filename="package://cola2_stonefish/data/eca5emicro/finger.obj" />
+      </geometry>
+      <origin rpy="0.0 0.0 3.1416" xyz="0.0 0.0 0.0" />
+      <material name="$(arg robot_namespace)/$(arg manipulator_namespace)/black" />
+    </visual>
+  </link>
+
+  <joint name="$(arg robot_namespace)/$(arg manipulator_namespace)/end_effector_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/$(arg manipulator_namespace)/link4"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/link4_ft"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  </joint>
+
+  <joint name="$(arg robot_namespace)/$(arg manipulator_namespace)/ft_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/$(arg manipulator_namespace)/link4_ft"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/gripper_base"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.05"/>
+  </joint>
+
+  <joint name="$(arg robot_namespace)/$(arg manipulator_namespace)/finger1_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/$(arg manipulator_namespace)/gripper_base"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/finger1"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  </joint>
+
+  <joint name="$(arg robot_namespace)/$(arg manipulator_namespace)/finger2_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/$(arg manipulator_namespace)/gripper_base"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/finger2"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  </joint>
+
+  <link name="$(arg robot_namespace)/$(arg manipulator_namespace)/camera"/>
+
+  <joint name="$(arg robot_namespace)/$(arg manipulator_namespace)_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/$(arg manipulator_namespace)/gripper_base"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/camera"/>
+    <origin rpy="0.0 0.0 1.571" xyz="0.0 0.0 0.05"/>
+  </joint>
+
+  <!-- Add force/torque sensor frame -->
+  <link name="$(arg robot_namespace)/$(arg manipulator_namespace)/force_torque"/>
+
+  <joint name="$(arg robot_namespace)/$(arg manipulator_namespace)/link4_to_ft_sensor" type="fixed">
+    <parent link="$(arg robot_namespace)/$(arg manipulator_namespace)/link4"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/force_torque"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.05"/>
+  </joint>
+
+  <!-- Fix manipulator to vehicle -->
+  <joint name="$(arg robot_namespace)/$(arg robot_namespace)_to_$(arg manipulator_namespace)" type="fixed">
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/$(arg manipulator_namespace)/base_link"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.74 0 0.372"/>
+  </joint>  
+
+  <!-- Add Proscilica camera looking forward -->
+  <link name="$(arg robot_namespace)/camera_front"/>
+
+  <joint name="$(arg robot_namespace)/camera_front_joint" type="fixed">
+    <parent link="$(arg robot_namespace)/base_link"/>
+    <child link="$(arg robot_namespace)/camera_front"/>
+    <origin rpy="1.2 0.0 1.571" xyz="0.45 0.0 -0.1"/>
+  </joint>
+</robot>

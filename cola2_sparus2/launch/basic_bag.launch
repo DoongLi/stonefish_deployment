@@ -1,0 +1,27 @@
+<launch>
+  <arg name="robot_name"/>
+  <node name="basic_bag" output="screen" pkg="rosbag" type="record" args="
+    /$(arg robot_name)/captain/trajectory_path
+    /$(arg robot_name)/cola2_version/version
+    /$(arg robot_name)/controller/merged_body_force_req_throttle
+    /$(arg robot_name)/controller/merged_body_velocity_req_throttle
+    /$(arg robot_name)/controller/merged_world_waypoint_req_throttle
+    /$(arg robot_name)/controller/thruster_setpoints
+    /$(arg robot_name)/controller/thruster_setpoints_throttle
+    /$(arg robot_name)/diagnostics_agg
+    /$(arg robot_name)/navigator/dvl
+    /$(arg robot_name)/navigator/gps
+    /$(arg robot_name)/navigator/gps_ned
+    /$(arg robot_name)/navigator/imu
+    /$(arg robot_name)/navigator/navigation_throttle
+    /$(arg robot_name)/navigator/odometry_throttle
+    /$(arg robot_name)/navigator/pressure
+    /$(arg robot_name)/navigator/usbl
+    /$(arg robot_name)/navigator/usbl_ned
+    /$(arg robot_name)/param_logger/params_string
+    /$(arg robot_name)/safety_supervisor/status
+    /$(arg robot_name)/vehicle_status
+    /rosout
+    --repeat-latched
+    --split --size 2048 --chunksize=1 -o $(env HOME)/bags/$(arg robot_name)_basic"/>
+</launch>

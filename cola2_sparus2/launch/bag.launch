@@ -1,0 +1,11 @@
+<!-- THIS LAUNCH FILE IS INTENDED TO BE USED FROM THE NODE cola2_log bag_recorder_node.py -->
+<launch>
+  <arg name="robot_name"/>
+  <arg name="launch_number" default="0"/>
+  <node name="record_auv_bag_$(arg launch_number)" output="screen" pkg="rosbag" type="record" args="
+    -a
+    --repeat-latched
+    --split --size 2048 -o $(env HOME)/bags/$(arg robot_name)"/>
+
+
+</launch>
