@@ -1,0 +1,24 @@
+<launch>
+  <!-- captain -->
+  <rosparam ns="captain" command="load" file="$(find cola2_control)/config/captain.yaml"/>
+  <node name="captain" pkg="cola2_control" type="captain_node" output="screen">
+    <param name="vehicle_config_launch_mission_package" value="cola2_sparus2"/>
+  </node>
+  <!-- pilot -->
+  <rosparam ns="pilot" command="load" file="$(find cola2_control)/config/pilot.yaml"/>
+  <node name="pilot" pkg="cola2_control" type="pilot_node" output="screen"/>
+  <!-- controller -->
+  <rosparam ns="controller" command="load" file="$(find cola2_control)/config/controller.yaml"/>
+  <node name="controller" pkg="cola2_control" type="controller_node" output="screen"/>
+
+  <!-- keyboard -->
+  <node name="keyboard" pkg="cola2_control" type="keyboard_node" output="screen"/>
+  <!-- keyboard_to_teleoperation -->
+  <node name="keyboard_to_teleoperation" pkg="cola2_control" type="keyboard_to_teleoperation_node.py" output="screen"/>
+  <!-- logitech_fx10_to_teleoperation -->
+  <rosparam ns="logitech_fx10_to_teleoperation" command="load" file="$(find cola2_control)/config/logitech_fx10_to_teleoperation.yaml"/>
+  <node name="logitech_fx10_to_teleoperation" pkg="cola2_control" type="logitech_fx10_to_teleoperation_node.py" output="screen"/>
+  <!-- teleoperation -->
+  <rosparam ns="teleoperation" command="load" file="$(find cola2_control)/config/teleoperation.yaml"/>
+  <node name="teleoperation" pkg="cola2_control" type="teleoperation_node" output="screen"/>
+</launch>

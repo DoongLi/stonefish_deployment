@@ -1,0 +1,16 @@
+# Minimum and maximum positions for each degree of freedom (DOF)
+max_pos: [10.0, 10.0, 2.0, 3.14159265359, 3.14159265359, 3.14159265359]
+min_pos: [-10.0, -10.0, -2.0, -3.14159265359, -3.14159265359, -3.14159265359]
+
+# Minimum and maximum velocities for each degree of freedom (m/s or rad/s)
+max_vel: [0.6, 0.2, 0.35, 0.0, 0.0, 0.25]
+min_vel: [-0.6, -0.2, -0.35, 0.0, 0.0, -0.25]
+
+# Initial state of the controllers (pose vs. velocity)
+pose_controlled_axis: [False, False, False, False, False, False]
+
+# Initial pose for the pose controllers
+base_pose: [0, 0, 0, 0, 0, 0]
+
+# Use current pose as base pose when the pose controllers are activated
+actualize_base_pose: True
